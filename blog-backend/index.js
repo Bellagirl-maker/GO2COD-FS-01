@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -15,6 +15,9 @@ app.use(bodyParser.json());
 const postsRoute = require('./routes/posts');
 app.use('/posts', postsRoute);
 
+const mongoURI = process.env.MONGO_URI;
+
+console.log('MongoDB URI:', mongoURI);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
